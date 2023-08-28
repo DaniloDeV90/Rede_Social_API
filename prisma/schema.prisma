@@ -1,0 +1,39 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Cadastro {
+  id        String   @id @default(uuid())
+  nome      String
+  email     String   @unique
+  password  String
+  data_nasc DateTime
+  Profile   Profile?
+
+  @@map("cadastros")
+}
+
+model Profile {
+  id          String   @id @default(uuid())
+  username    String
+  sexo        String
+  Cadastro_Id String   @unique
+  Cadastro    Cadastro @relation(fields: [Cadastro_Id], references: [id], onDelete: Cascade)
+
+  ImgPerfil ImgPerfil?
+}
+
+model ImgPerfil {
+  id         String  @id @default(uuid())
+  imgUrl     String? 
+  Profile_id String  @unique
+  Profile     Profile @relation(fields: [Profile_id], references: [id])
+}
