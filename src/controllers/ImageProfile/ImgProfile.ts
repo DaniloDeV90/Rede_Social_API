@@ -22,7 +22,7 @@ class ImgProfile {
         })
 
         if (!cadastro?.Profile?.id) return res.json({ errors: "Voce precisa de um perfil primeiro!!" })
-        
+
         return upload(req, res, async (err) => {
 
 
@@ -36,7 +36,7 @@ class ImgProfile {
             console.log(cadastro)
             const imgUrl = await prismaClient.imgPerfil.create({
                 data: {
-                    imgUrl: "http://localhost:8080/cadastro/imagem/" + req.file?.filename,
+                    imgUrl: "https://api-rede-soc.vercel.app" + req.file?.filename,
                     Profile: {
                         connect: {
                             id: cadastro?.Profile?.id
