@@ -22,6 +22,7 @@ constructor () {
  }
 
  public routes ():void {
+  this.app.use ("/",)
     this.app.use ("/cadastro", CadastroRouters)
     this.app.use ("/createprofile", CreateProfile)
     this.app.use ("/login", LoginRouter)
