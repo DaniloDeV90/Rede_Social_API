@@ -4,7 +4,7 @@ import {resolve} from "path"
 import  CreateProfile from "./routes/CreateProfile"
 import CadastroRouters from "./routes/CadastroRouters"
 import LoginRouter from "./routes/LoginRoute"
-
+import HomeRouter from "./routes/HomeRouter"
 class App {
   public app = express  ();
 constructor () {
@@ -22,7 +22,7 @@ constructor () {
  }
 
  public routes ():void {
-  this.app.use ("/",)
+  this.app.use ("/",HomeRouter)
     this.app.use ("/cadastro", CadastroRouters)
     this.app.use ("/createprofile", CreateProfile)
     this.app.use ("/login", LoginRouter)
