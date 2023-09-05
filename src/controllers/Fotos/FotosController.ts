@@ -21,7 +21,7 @@ class FotoController {
                 if (err) {
                     return res.json("erro")
                 }
-                res.json({ ap: "successo" })
+                res.json({success: "sucesso"})
             })
         } catch (error) {
             return res.status(404).json({ erros: "erro interno" })

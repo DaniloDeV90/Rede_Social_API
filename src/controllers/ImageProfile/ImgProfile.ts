@@ -25,6 +25,8 @@ class ImgProfile {
 
         return upload(req, res, async (err) => {
 
+            const urlLocal = "http://localhost:8080";
+            const urlVercel = "https://api-rede-soc.vercel.app";
 
             if (err instanceof Error) {
                 return res.json({ errors: err.message })
@@ -36,7 +38,7 @@ class ImgProfile {
             console.log(cadastro)
             const imgUrl = await prismaClient.imgPerfil.create({
                 data: {
-                    imgUrl: "https://api-rede-soc.vercel.app" + req.file?.filename,
+                    imgUrl: urlLocal + req.file?.filename,
                     Profile: {
                         connect: {
                             id: cadastro?.Profile?.id

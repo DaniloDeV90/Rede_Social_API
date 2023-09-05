@@ -30,7 +30,7 @@ const limits = {
 
 
 export default multer ({storage,limits, fileFilter(req, file, callback) {
-console.log (file)
+
 if (file.mimetype == "image/png" || file.mimetype == "image/jpeg"  ) return callback (null , true) 
 
 

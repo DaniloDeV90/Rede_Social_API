@@ -1,8 +1,8 @@
 
 
-import App from "./App"
+import  {serverHttp} from "./App"
 
-App.listen (8080, () => {
+serverHttp.listen (8080, () => {
     console.log ("server on")
 })
 
