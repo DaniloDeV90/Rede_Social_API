@@ -16,24 +16,56 @@ model Cadastro {
   email     String   @unique
   password  String
   data_nasc DateTime
+  Token String?
   Profile   Profile?
 
   @@map("cadastros")
 }
 
 model Profile {
-  id          String   @id @default(uuid())
+  id          String     @id @default(uuid())
   username    String
   sexo        String
-  Cadastro_Id String   @unique
-  Cadastro    Cadastro @relation(fields: [Cadastro_Id], references: [id], onDelete: Cascade)
-
-  ImgPerfil ImgPerfil?
+  Cadastro_Id String     @unique
+  Cadastro    Cadastro   @relation(fields: [Cadastro_Id], references: [id], onDelete: Cascade)
+  ImgPerfil   ImgPerfil?
+  post        Post[]
 }
 
 model ImgPerfil {
   id         String  @id @default(uuid())
-  imgUrl     String? 
+  imgUrl     String?
   Profile_id String  @unique
-  Profile     Profile @relation(fields: [Profile_id], references: [id])
+  Profile    Profile @relation(fields: [Profile_id], references: [id], onDelete: Cascade)
+}
+
+model Post {
+  id        String  @id @default(uuid())
+  profile   Profile @relation(fields: [ProfileId], references: [id], onDelete: Cascade)
+  descricao String?
+  ProfileId String
+  imgPost ImgPost?
+  created DateTime @default(now())
+  comentarios Comentarios []
+  @@map("posts")
+}
+
+model ImgPost {
+  id     String  @id @default(uuid())
+  imgUrl String?
+  postId String  @unique
+
+  Post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  @@map("imgposts")
+}
+model Comentarios {
+ id String @id @default( uuid())
+ ProfileId String
+ NameProfile String 
+ comentario String
+ idPost String
+ imgPerfilUrl  String?
+ PostagemData DateTime @default(now())
+
+ Post Post @relation( fields: [idPost], references: [id], onDelete: Cascade) 
 }

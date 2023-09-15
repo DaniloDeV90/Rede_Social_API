@@ -26,9 +26,18 @@ class Login {
             expiresIn: "1d"
         })
 
+       await prismaClient.cadastro.update ({
+            where: {
+                id: conta.id
+            },
+            data: {
+                Token: token
+            }
+        }).catch (() => res.json ("algo deu errado tente novamente mais tarde"))
         res.status(200).json({ token })
 
 
+        
 
 
     }

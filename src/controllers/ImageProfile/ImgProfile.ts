@@ -1,25 +1,14 @@
 import { Request, Response } from "express"
 import { prismaClient } from "../../databse";
 import FotoConfig from "../Fotos/FotoConfig";
+import CadastroUnique from "../../utils/CadastroUnique";
 const upload = FotoConfig.single("foto")
 class ImgProfile {
 
     async Create(req: Request, res: Response) {
         const id = req.userId;
-        const cadastro = await prismaClient.cadastro.findUnique({
-            where: {
-                id
-
-            },
-            include: {
-                Profile: {
-                    select: {
-                        id: true
-                    }
-                }
-            },
-
-        })
+   
+        const cadastro = await CadastroUnique (req.userId as string)
 
         if (!cadastro?.Profile?.id) return res.json({ errors: "Voce precisa de um perfil primeiro!!" })
 
@@ -32,23 +21,24 @@ class ImgProfile {
                 return res.json({ errors: err.message })
             }
             if (err) {
-                return res.json("erro")
+                return res.json({ errors: "erro" })
             }
 
-            console.log(cadastro)
-            const imgUrl = await prismaClient.imgPerfil.create({
-                data: {
-                    imgUrl: urlLocal + req.file?.filename,
-                    Profile: {
-                        connect: {
-                            id: cadastro?.Profile?.id
-                        }
-                    }
-                }
-            })
 
-            console.log(req.file)
-            res.json({ ap: imgUrl })
+            const id: string = cadastro.Profile?.ImgPerfil?.id as string;
+
+
+            const imgUl = await prismaClient.imgPerfil.update({
+                where: { id },
+                data: {
+                    imgUrl: urlLocal + "/cadastro/imagem/" + req.file?.filename
+                }
+            }).catch(e => res.json(e))
+                .then(() => res.json("sucesso"))
+            return imgUl
+
+
+
         })
 
 

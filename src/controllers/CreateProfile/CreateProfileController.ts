@@ -1,6 +1,5 @@
 import { Request, Response } from "express"
 import { prismaClient } from "../../databse";
-import FotoConfig from "../Fotos/FotoConfig";
 
 class CreateProfile {
 
@@ -26,8 +25,18 @@ class CreateProfile {
 
             }
         })
-        console.log(criado)
-        res.json("asd")
+       await prismaClient.imgPerfil.create({
+            data: {
+                Profile: {
+                    connect: {
+                        id: criado.id
+                    }
+                }
+            }
+        }).catch (e => res.json (e))
+        .then (e => res.json ("tudo certo"))
+      
+        
     }
 }
 

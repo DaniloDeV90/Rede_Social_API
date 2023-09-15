@@ -17,25 +17,28 @@ class LoginMiddleware {
         try {
             const verificar: token.JwtPayload = token.verify(authorization, process.env.TOKEN as string) as token.JwtPayload
 
-            const user = await prismaClient.cadastro.findUnique ( {
+
+
+            const user = await prismaClient.cadastro.findUnique({
                 where: {
                     id: verificar.id
                 }
             })
- 
-            if (!user) return res.json ("token inválido!!")
-            req.userId = user?.id
-            
 
-            return next ()
+            if (user?.Token != authorization) return res.json ({erros: "essa sessão foi encerrada"})
+            if (!user) return res.json("token inválido!!")
+            req.userId = user?.id
+
+
+            return next()
 
 
         } catch (e) {
 
-            res.json ({errors: "token inválido!"})
+            res.json({ errors: "token inválido!" })
         }
 
-     
+
     }
 
 

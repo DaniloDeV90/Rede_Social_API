@@ -1,11 +1,13 @@
 import express from "express"
 import helmet from "helmet"
 import { resolve } from "path"
+import cors from "cors"
 import CreateProfile from "./routes/CreateProfile"
 import CadastroRouters from "./routes/CadastroRouters"
 import LoginRouter from "./routes/LoginRoute"
 import HomeRouter from "./routes/HomeRouter"
-
+import createPostRouter from "./routes/CreatePostRouters"
+import Comentarios from "./routes/ComentarioRouters"
 import http from "http"
 
 
@@ -19,6 +21,7 @@ class App {
   }
 
   public middlewares(): void {
+    this.app.use (cors ())
     this.app.use(helmet())
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
@@ -30,6 +33,8 @@ class App {
     this.app.use("/cadastro", CadastroRouters)
     this.app.use("/createprofile", CreateProfile)
     this.app.use("/login", LoginRouter)
+    this.app.use ("/post", createPostRouter)
+    this.app.use ("/comentarios", Comentarios)
   }
 }
 

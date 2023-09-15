@@ -25,7 +25,10 @@ export default async (params: paramsS3): Promise<boolean> => {
     const command = new PutObjectCommand(params)
 
     await s3.send(command).then(() => retorno = true)
-        .catch(() => retorno = false)
+        .catch((err) => {
+            console.log (err)
+            
+            retorno = false})
 
     return retorno
 }
