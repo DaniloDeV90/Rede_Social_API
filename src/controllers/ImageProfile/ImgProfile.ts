@@ -24,7 +24,6 @@ class ImgProfile {
                 return res.json({ errors: "erro" })
             }
 
-
             const id: string = cadastro.Profile?.ImgPerfil?.id as string;
 
 

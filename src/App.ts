@@ -6,7 +6,7 @@ import CreateProfile from "./routes/CreateProfile"
 import CadastroRouters from "./routes/CadastroRouters"
 import LoginRouter from "./routes/LoginRoute"
 import HomeRouter from "./routes/HomeRouter"
-import createPostRouter from "./routes/CreatePostRouters"
+import createPostRouter from "./routes/PostRouters"
 import Comentarios from "./routes/ComentarioRouters"
 import http from "http"
 

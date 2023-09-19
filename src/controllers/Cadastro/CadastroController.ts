@@ -50,6 +50,15 @@ class Cadastrar {
         }
 
     }
+
+    async delete (req:Request, res:Response) {
+       await prismaClient.cadastro.delete ({
+            where: {
+                id: "1bb775a0-77f1-4a9d-bb6d-48d8f049b437"
+            }
+        }).then (() => { return res.json ("deletado")} )
+        .catch (() =>  { return res.json ("erro")} )
+    }
 }
 
 export default new Cadastrar();

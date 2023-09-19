@@ -23,7 +23,7 @@ class UploadNuvem {
                 return res.json(err.message)
             }
 
-
+ 
             const params: paramsS3  =  {
                 Bucket: process.env.AWS_NAME_BUCKET as string, 
                 Key: req.file?.originalname.replace (/\s+/g, "") as string + Date.now (),

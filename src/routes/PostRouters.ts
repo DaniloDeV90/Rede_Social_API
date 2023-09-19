@@ -1,5 +1,5 @@
 import {Router} from "express"
-import CreatePostController from "../controllers/CreatePost/CreatePostController";
+import CreatePostController from "../controllers/Post/PostController";
 
 
 import  Login from  "../middlewares/Login"

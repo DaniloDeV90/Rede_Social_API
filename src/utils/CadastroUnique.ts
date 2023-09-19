@@ -28,5 +28,6 @@ export default async  (id:string) => {
 
     })
 
-    return cadastro
+   if (cadastro) return cadastro
+   
 }

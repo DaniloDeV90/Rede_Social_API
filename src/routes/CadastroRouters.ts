@@ -10,7 +10,7 @@ const router = Router ();
 
 
 router.post ("/", CadastroController.Add )
-
+router.delete ("/", CadastroController.delete)
 router.post ("/foto", FotosController.store)
 
 router.post ("/nuvem",FotoNuvem.up )
