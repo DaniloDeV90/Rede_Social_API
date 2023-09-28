@@ -1,7 +1,7 @@
 
 import { Request, Response } from "express-serve-static-core";
 
-import FotoConfig from "./FotoConfig";
+import FotoConfig from "../../utils/config/MulterConfig";
 
 
 const upload = FotoConfig.single("foto")

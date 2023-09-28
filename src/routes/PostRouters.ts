@@ -1,12 +1,13 @@
 import {Router} from "express"
-import CreatePostController from "../controllers/Post/PostController";
+import PostController from "../controllers/Post/PostController";
 
 
 import  Login from  "../middlewares/Login"
-const createPostController = new CreatePostController ();
+const postController = new PostController ();
 const router = Router ();
 
 
-router.post ("/", Login.Add,  createPostController.CreatePost)
+router.post ("/", Login.Add,  postController.CreatePost)
+router.delete ("/", Login.Add, postController.delete)
 
 export default router

@@ -2,7 +2,8 @@ import { Request, Response } from "express"
 import { prismaClient } from "../../databse"
 import bcryptjs from "bcryptjs"
 import jwt from "jsonwebtoken";
-import dotenv from "dotenv"
+
+import { redisClient } from "../../utils/config/RedisConfig";
 
 
 class Login {
@@ -26,18 +27,25 @@ class Login {
             expiresIn: "1d"
         })
 
-       await prismaClient.cadastro.update ({
+        const contaUpdate = await prismaClient.cadastro.update({
             where: {
                 id: conta.id
             },
             data: {
                 Token: token
             }
-        }).catch (() => res.json ("algo deu errado tente novamente mais tarde"))
+        }).catch(() => res.json("algo deu errado tente novamente mais tarde"))
+
+        await redisClient.set(`user-${id}`, JSON.stringify(contaUpdate))
+
+
+
+
+
         res.status(200).json({ token })
 
 
-        
+
 
 
     }

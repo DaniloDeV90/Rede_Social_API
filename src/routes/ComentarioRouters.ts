@@ -10,5 +10,6 @@ const comentarioController = new ComentariosController ()
 
 router.post ("/",Login.Add, comentarioController.criarComentario )
 
+router.get  ("/:idPost", comentarioController.GetComentario)
 
 export default router

@@ -8,8 +8,13 @@ class Home {
 
     async home(req: Request, res: Response) {
 
+        
         const allPosts = await prismaClient.post.findMany({
+        
+        
             select: {
+        
+                id: true,
                 imgPost: {
                     select: {
                         imgUrl: true
@@ -19,15 +24,14 @@ class Home {
                 created: true,
                 profile: {
                     select: {
-                        username: true
+                        username: true,
+                        ImgPerfil: {
+                            select: {
+                                imgUrl: true
+                            }
+                        }
                     }
-                },
-                comentarios: {
-                    select: {
-                        NameProfile: true,
-                        comentario: true,
-                        PostagemData: true
-                    }
+
                 }
             }
         })

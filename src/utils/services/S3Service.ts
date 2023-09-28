@@ -18,7 +18,7 @@ const s3 = new S3Client({
 });
 
 
-export default async (params: paramsS3): Promise<boolean> => {
+export const S3upload = async (params: paramsS3): Promise<boolean> => {
 
     let retorno: boolean = true
 
@@ -26,10 +26,24 @@ export default async (params: paramsS3): Promise<boolean> => {
 
     await s3.send(command).then(() => retorno = true)
         .catch((err) => {
-            console.log (err)
-            
-            retorno = false})
+            console.log(err)
+
+            retorno = false
+        })
 
     return retorno
 }
 
+export const S3delete = async () => {
+    const params = {
+        Bucket: process.env.AWS_NAME_BUCKET,
+        Key: "CapturadeTela(1).png1694921487676"
+    }
+    const command = new DeleteObjectCommand(params)
+
+    s3.send(command).then(() => true)
+        .catch(() => false)
+
+
+
+}

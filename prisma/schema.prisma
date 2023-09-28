@@ -54,7 +54,7 @@ model ImgPost {
   id     String  @id @default(uuid())
   imgUrl String?
   postId String  @unique
-
+  
   Post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
   @@map("imgposts")
 }

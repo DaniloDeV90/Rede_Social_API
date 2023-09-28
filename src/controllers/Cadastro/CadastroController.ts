@@ -5,7 +5,7 @@ import bcryptjs from "bcryptjs"
 
 class Cadastrar {
 
-    async Add(req: Request, res: Response) {
+    async create(req: Request, res: Response) {
 
         try {
 
@@ -54,7 +54,7 @@ class Cadastrar {
     async delete (req:Request, res:Response) {
        await prismaClient.cadastro.delete ({
             where: {
-                id: "1bb775a0-77f1-4a9d-bb6d-48d8f049b437"
+                id: "7ba0bd09-d2d8-4347-a487-04ea925571ef"
             }
         }).then (() => { return res.json ("deletado")} )
         .catch (() =>  { return res.json ("erro")} )

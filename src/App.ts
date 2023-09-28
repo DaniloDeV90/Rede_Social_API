@@ -2,12 +2,13 @@ import express from "express"
 import helmet from "helmet"
 import { resolve } from "path"
 import cors from "cors"
-import CreateProfile from "./routes/CreateProfile"
+import PofileRouters from "./routes/ProfileRouters"
 import CadastroRouters from "./routes/CadastroRouters"
-import LoginRouter from "./routes/LoginRoute"
-import HomeRouter from "./routes/HomeRouter"
-import createPostRouter from "./routes/PostRouters"
-import Comentarios from "./routes/ComentarioRouters"
+import LoginRouters from "./routes/LoginRouters"
+import HomeRouter from "./routes/HomeRouters"
+import PostRouters from "./routes/PostRouters"
+import ComentarioRouters from "./routes/ComentarioRouters"
+import FotosRouters from "./routes/FotosRouters"
 import http from "http"
 
 
@@ -31,10 +32,11 @@ class App {
   public routes(): void {
     this.app.use("/", HomeRouter)
     this.app.use("/cadastro", CadastroRouters)
-    this.app.use("/createprofile", CreateProfile)
-    this.app.use("/login", LoginRouter)
-    this.app.use ("/post", createPostRouter)
-    this.app.use ("/comentarios", Comentarios)
+    this.app.use("/createprofile", PofileRouters)
+    this.app.use("/login", LoginRouters)
+    this.app.use ("/post", PostRouters)
+    this.app.use ("/comentarios", ComentarioRouters)
+    this.app.use ("/fotos", FotosRouters)
   }
 }
 

@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { prismaClient } from "../../databse"
-import CadastroUnique from "../../utils/CadastroUnique"
+import CadastroUnique from "../../utils/functions/CadastroFunction"
 
 class ComentariosController {
     async criarComentario(req: Request, res: Response) {
@@ -23,7 +23,7 @@ class ComentariosController {
 
             await prismaClient.comentarios.create({
                 data: {
-                    comentario: "Flamengo",
+                    comentario: "Roubaram o super gremio",
                     ProfileId,
                     NameProfile,
                     idPost,
@@ -39,6 +39,30 @@ class ComentariosController {
     }
 
 
+    async GetComentario(req: Request, res: Response) {
+
+        try {
+
+        
+        const { idPost } = req.params;
+        const comentarios = await prismaClient.post.findUnique({
+            where: {
+                id: idPost,
+            
+            },
+
+            select: {
+              
+                comentarios: true
+            }
+        })
+
+
+        res.status(200).json(comentarios)
+    } catch (e) {
+        res.status (404).json ({errors: "erro interno"})
+    }
+    }
 
 }
 

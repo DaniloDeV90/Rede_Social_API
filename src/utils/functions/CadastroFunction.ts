@@ -1,4 +1,4 @@
-import { prismaClient } from "../databse"
+import { prismaClient } from "../../databse"
 
 export default async  (id:string) => {
     const cadastro = await prismaClient.cadastro.findUnique({

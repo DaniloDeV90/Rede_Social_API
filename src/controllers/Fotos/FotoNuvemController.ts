@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
-import upload  from "../../utils/MulterCloudConfig";
-import S3UploadConfig from "../../utils/S3UploadConfig";
+import upload  from "../../utils/config/MulterCloudConfig";
+import {S3upload} from "../../utils/services/S3Service";
 
 type paramsS3 = {
     Bucket: string,
@@ -34,7 +34,7 @@ class UploadNuvem {
             }
 
       
-            if ( !await S3UploadConfig (params)) return res.status (404).json ({errors: "erro ao adicionar imagem" })
+            if ( !await S3upload (params)) return res.status (404).json ({errors: "erro ao adicionar imagem" })
 
             res.status (200).json ("sucesso")
             
