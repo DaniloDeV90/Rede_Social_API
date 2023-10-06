@@ -1,6 +1,7 @@
-
-
-
+export type CustomError = {
+    error: Error;
+    ErrorStatus: number;
+  };
 export  type paramsS3 = {
     Bucket: string,
     Key: string,
@@ -29,3 +30,15 @@ export type  noContains = {
 
     }
 }
+
+export type PostTypes = {
+    FileConfig: {
+      Filename: string,
+      FileSize: number,
+
+      FileBuffer: ArrayBuffer,
+      FileType: string
+    } | null,
+    textArea: string | null,
+    id: string
+  }

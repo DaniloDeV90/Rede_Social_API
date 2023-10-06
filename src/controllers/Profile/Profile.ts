@@ -12,7 +12,7 @@ class CreateProfile {
 
 
         console.log(username, sexo)
-
+console.log (id)
         const criado = await prismaClient.profile.create({
             data: {
                 sexo,

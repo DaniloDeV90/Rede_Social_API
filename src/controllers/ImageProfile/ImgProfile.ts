@@ -26,8 +26,7 @@ class ImgProfile {
 
         return uploadd(req, res, async (err) => {
 
-            const urlLocal = "http://localhost:8080";
-            const urlVercel = "https://api-rede-soc.vercel.app";
+           
 
             if (err instanceof Error) {
                 return res.json({ errors: err.message })
@@ -52,7 +51,7 @@ class ImgProfile {
 
       
             if ( !await S3upload (params)) return res.status (404).json ({errors: "erro ao adicionar imagem" })
-
+          console.log (req.cookies)
 
             const imgUl = await prismaClient.imgPerfil.update({
                 where: { id },
