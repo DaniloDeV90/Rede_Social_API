@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import upload  from "../../utils/config/MulterCloudConfig";
-import {S3upload} from "../../utils/services/S3Service";
+import {S3upload} from "../../services/S3Service";
 
 type paramsS3 = {
     Bucket: string,

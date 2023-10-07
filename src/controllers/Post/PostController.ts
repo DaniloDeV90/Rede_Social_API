@@ -2,10 +2,10 @@ import { Request, Response } from "express"
 import { prismaClient } from "../../databse"
 import CadastroUnique from "../../utils/functions/CadastroFunction"
 import upload from "../../utils/config/MulterCloudConfig"
-import { S3delete, S3upload } from "../../utils/services/S3Service"
+import { S3delete, S3upload } from "../../services/S3Service"
 import * as AllTypes from "../../utils/types/Params"
 import { redisClient } from "../../utils/config/RedisConfig"
-import CustomErrror from "../../errors/ErrosLogin/LoginErrors"
+import CustomErrror from "../../errors/ErrosLogin/CustomError"
 
 
 

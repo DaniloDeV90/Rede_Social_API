@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import ErrorLogin from "../../errors/ErrosLogin/LoginErrors"
+import ErrorLogin from "../../errors/ErrosLogin/CustomError"
 
 
 export default (token: string) => {

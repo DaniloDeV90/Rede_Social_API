@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { redisClient } from "../../utils/config/RedisConfig";
-import CustomErrror from "../../errors/ErrosLogin/LoginErrors";
+import CustomErrror from "../../errors/ErrosLogin/CustomError";
 import { prismaClient } from "../../databse";
 import JwtVerifyToken from "../../utils/functions/JwtVerifyToken";
 

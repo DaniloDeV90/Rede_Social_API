@@ -3,7 +3,7 @@ import { prismaClient } from "../../databse"
 import bcryptjs from "bcryptjs"
 import jwt from "jsonwebtoken";
 import { redisClient } from "../../utils/config/RedisConfig";
-import CustomErrror from "../../errors/ErrosLogin/LoginErrors";
+import CustomErrror from "../../errors/ErrosLogin/CustomError";
 
 
 class Login {

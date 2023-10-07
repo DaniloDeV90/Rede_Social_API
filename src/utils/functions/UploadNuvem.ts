@@ -1,5 +1,5 @@
 import { prismaClient } from "../../databse"
-import { S3upload } from "../services/S3Service"
+import { S3upload } from "../../services/S3Service"
 import { PostTypes, paramsS3 } from "../types/Params"
 
 

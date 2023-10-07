@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { prismaClient } from "../../databse";
 import FotoConfig from "../../utils/config/MulterConfig";
 import CadastroUnique from "../../utils/functions/CadastroFunction";
-import  {S3upload} from "../../utils/services/S3Service";
+import  {S3upload} from "../../services/S3Service";
 import upload from "../../utils/config/MulterCloudConfig";
 const uploadd =  upload.single("foto")
 

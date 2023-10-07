@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express"
 import token from "jsonwebtoken"
 import { redisClient } from "../utils/config/RedisConfig"
 import JwtVerifyToken from "../utils/functions/JwtVerifyToken"
-import CustomErrror  from "../errors/ErrosLogin/LoginErrors"
+import CustomErrror  from "../errors/ErrosLogin/CustomError"
 
 declare module "express" {
     interface Request {
