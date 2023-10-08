@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { CreateRegisterController } from "../controllers/Register/createRegister/createRegister";
+import { createUserController } from "../useCases/CreateUser/Main";
+createUserController
+const router = Router();
 
-const createReguisterController = new CreateRegisterController ()
-const router = Router ();
 
 
-router.post ("/", createReguisterController.handle)
+
+router.post("/", (request, response) => createUserController.handle(request, response))
 // router.delete ("/", CadastroController.delete)
 
 

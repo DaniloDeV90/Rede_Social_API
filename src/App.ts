@@ -16,7 +16,7 @@ import http from "http"
 
 
 import IsAuthenticatedRouters from "./routes/AuthenticatedRouters"
-import configureSocket from "./controllers/WebSockets/CreatePostSocket"
+import configureSocket from "./WebSockets/CreatePostSocket"
 
 const corsConfig = {
 

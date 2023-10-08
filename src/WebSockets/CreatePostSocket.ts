@@ -1,9 +1,10 @@
 // socketConfig.js
 import { Server } from "socket.io";
 import http from "http";
-import { prismaClient } from "../../databse";
-import { PostTypes } from "../../utils/types/Params";
-import UploadNuvem from "../../utils/functions/UploadNuvem";
+import { prismaClient } from "../databse";
+import UploadNuvem from "../utils/functions/UploadNuvem";
+import { PostTypes } from "../utils/types/Params";
+
 
 
 
