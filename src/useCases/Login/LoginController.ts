@@ -16,10 +16,10 @@ export class LoginController {
             this.ValidationLogin.LoginIsValid({ ...req.body })
             const login = await this.LoginUseCase.handle({ ...req.body })
 
-
+            res.cookie("ProfileCookie", login.Token, { httpOnly: true, })
             res.status(200).json({ status: login })
 
-            res.cookie("ProfileCookie", login.Token, { httpOnly: true, })
+
 
         } catch (error) {
             if (error instanceof CustomError) {

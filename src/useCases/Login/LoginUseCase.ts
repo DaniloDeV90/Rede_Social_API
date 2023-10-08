@@ -17,7 +17,7 @@ export class LoginUseCase {
 
 
         const Login = await this.UserRepository.findByEmail(data.email)
-        if (!Login) throw new CustomErrror("Senha ou Email incorretos", 403)
+        if (!Login) throw new CustomErrror("Senha ou Email incorretos", 408)
         if (!await BcryptCompare(data.password, Login.password)) throw new CustomErrror("Senha ou Email incorretos", 408)
         const user = new User(Login)
         const token = CreateToken(user.id as string)
@@ -25,7 +25,7 @@ export class LoginUseCase {
         await this.redisRepository.set(`user-${login.id as string}`, token)
 
 
-        
+
         return login
 
 
