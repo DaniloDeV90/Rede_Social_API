@@ -34,6 +34,7 @@ export class PostgresUsersRepository implements IusersRespository {
         }) as User
 
 
+        await prismaClient.$disconnect()
         return emaill
 
     }
@@ -48,6 +49,7 @@ export class PostgresUsersRepository implements IusersRespository {
             }
         }) as User
 
+        await prismaClient.$disconnect()
         return login
     }
 
@@ -63,6 +65,7 @@ export class PostgresUsersRepository implements IusersRespository {
 
         })
 
+        await prismaClient.$disconnect()
         return UserUpdated
     }
 

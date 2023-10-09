@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken"
-import ErrorLogin from "../../errors/ErrosLogin/CustomError"
+import CustomError from "../../errors/ErrosLogin/CustomError"
 
 
 export default (token: string) => {
@@ -14,7 +14,7 @@ export default (token: string) => {
 
 
     } catch (e) {
-        throw new ErrorLogin("Token inválido!", 401)
+        throw new CustomError("Token inválido!", 401)
     }
 
 

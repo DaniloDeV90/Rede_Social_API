@@ -1,11 +1,16 @@
 import { Router } from "express";
-
-
-
-
 import { loginController } from "../useCases/Login/Main";
-const router = Router ()
+import { logoutController } from "../useCases/Logout/Main";
+import { authenticated } from "../middlewares";
 
-router.post ("/",  (request,response) => loginController.handle (request,response))
 
-export default router 
+
+const loginRouters = Router()
+
+loginRouters.post("/", (request, response) => loginController.handle(request, response))
+
+
+loginRouters.delete("/", (request, response, next) => authenticated.isAuthenticated(request, response, next), (request, response) => logoutController.handle(request, response))
+
+
+export { loginRouters } 

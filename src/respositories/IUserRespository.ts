@@ -6,7 +6,6 @@ import { User } from "../entities/User";
 export interface Iupdate {
     nome?: string,
     password?: string
-    Token?: string
     data_nasc?: string
 }
 

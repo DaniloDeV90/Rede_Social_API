@@ -4,7 +4,7 @@ import { resolve } from "path"
 import cors from "cors"
 import PofileRouters from "./routes/ProfileRouters"
 import CadastroRouters from "./routes/CadastroRouters"
-import LoginRouters from "./routes/LoginRouters"
+import {loginRouters} from "./routes/LoginRouters"
 import HomeRouter from "./routes/HomeRouters"
 import PostRouters from "./routes/PostRouters"
 import ComentarioRouters from "./routes/ComentarioRouters"
@@ -52,7 +52,7 @@ class App {
     this.app.use("/", HomeRouter)
     this.app.use("/cadastro", CadastroRouters)
     this.app.use("/createprofile", PofileRouters)
-    this.app.use("/login", LoginRouters)
+    this.app.use("/login", loginRouters)
     this.app.use("/post", PostRouters)
     this.app.use("/comentarios", ComentarioRouters)
     this.app.use("/fotos", FotosRouters)

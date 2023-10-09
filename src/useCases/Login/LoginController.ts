@@ -14,9 +14,10 @@ export class LoginController {
         try {
 
             this.ValidationLogin.LoginIsValid({ ...req.body })
-            const login = await this.LoginUseCase.handle({ ...req.body })
+            const login = await this.LoginUseCase.execute({ ...req.body })
 
-            res.cookie("ProfileCookie", login.Token, { httpOnly: true, })
+
+            res.cookie(`userProfile`, login.id)
             res.status(200).json({ status: login })
 
 

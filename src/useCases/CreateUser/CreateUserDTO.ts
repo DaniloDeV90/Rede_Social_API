@@ -4,5 +4,5 @@ export interface IcreateUserRequestDTO {
     email: string,
     password: string,
     data_nasc:Date
-    Token: string | null
+
 }

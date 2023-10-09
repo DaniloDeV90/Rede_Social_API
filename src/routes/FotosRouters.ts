@@ -9,8 +9,8 @@ const router = Router ();
 
 
 
-router.post ("/nuvem",FotoNuvem.up )
-router.post ("/local", FotosController.store)
+// router.post ("/nuvem",FotoNuvem.up )
+// router.post ("/local", FotosController.store)
 
 
 

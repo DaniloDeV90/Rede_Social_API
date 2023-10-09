@@ -1,14 +1,16 @@
 import { Router } from "express";
-import Login from "../middlewares/Login";
-import ImgProfile from "../controllers/ImageProfile/ImgProfile";
-import Profile from "../controllers/Profile/Profile";
+import { Authenticated } from "../middlewares/authenticationmiddleware";
+import { createProfileController } from "../useCases/CreateProfile/Main";
+import { deleteProfileController } from "../useCases/DeleteProfile/Main";
+import { authenticated } from "../middlewares";
 
 
-const router = Router ();
+const router = Router();
 
 
-router.post ("/", Login.Add,Profile.Create )
+router.post("/", authenticated.isAuthenticated, (request, response) => createProfileController.handle(request, response))
 
-router.post ("/imgprofile",Login.Add, ImgProfile.Create)
+
+router.delete("/", authenticated.isAuthenticated, (request, response) => deleteProfileController.handle(request, response))
 
 export default router

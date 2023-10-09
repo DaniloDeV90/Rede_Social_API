@@ -21,52 +21,52 @@ class Home {
 
 
   
-        const cookie = req.cookies.ProfileCookie
+        // const cookie = req.cookies.ProfileCookie
 
-        const cookieRedis = await redisClient.get(`user-${req.userId}`)
+        // const cookieRedis = await redisClient.get(`user-${req.userId}`)
 
-        if (cookie != cookieRedis) throw new CustomErrror("Houve algum erro, logue novamente!!", 402)
+        // if (cookie != cookieRedis) throw new CustomErrror("Houve algum erro, logue novamente!!", 402)
 
-        const id = JwtVerifyToken(cookieRedis as string)
+        // const id = JwtVerifyToken(cookieRedis as string)
 
-        const RedisProfileClient = await redisClient.get(`user-${req.userId}-profile`).then(response => response)
-
-
+        // const RedisProfileClient = await redisClient.get(`user-${req.userId}-profile`).then(response => response)
 
 
-        if (!RedisProfileClient) {
-            const User = await prismaClient.cadastro.findUnique({
-                where: {
-                    id: id.id
-                },
-                select: {
+
+
+        // if (!RedisProfileClient) {
+        //     const User = await prismaClient.cadastro.findUnique({
+        //         where: {
+        //             id: id.id
+        //         },
+        //         select: {
                  
-                    Profile: {
-                        select: {
-                            id: true,
-                            ImgPerfil: {
-                                select: {
-                                    imgUrl: true,
-                                    id: true
-                                }
-                            },
-                            username: true,
-                            sexo: true
-                        }
-                    }
-                }
-            })
+        //             Profile: {
+        //                 select: {
+        //                     id: true,
+        //                     ImgPerfil: {
+        //                         select: {
+        //                             imgUrl: true,
+        //                             id: true
+        //                         }
+        //                     },
+        //                     username: true,
+        //                     sexo: true
+        //                 }
+        //             }
+        //         }
+        //     })
         
             
-            console.log ("Mano postgre")
-            await redisClient.set(`user-${req.userId}-profile`, JSON.stringify(User))
+        //     console.log ("Mano postgre")
+        //     await redisClient.set(`user-${req.userId}-profile`, JSON.stringify(User))
           
-            return res.json(User)
+        //     return res.json(User)
 
-        }
+        // }
 
 
-        return res.json(JSON.parse (RedisProfileClient))
+        // return res.json(JSON.parse (RedisProfileClient))
 
 
     }
