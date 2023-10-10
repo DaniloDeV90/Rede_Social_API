@@ -3,35 +3,41 @@ import { Token } from "../../entities/Token";
 import { IAuthenticatedRepository } from "../IAuthenticatedRepository";
 import { prismaClient } from "../../databse";
 import CustomErrror from "../../errors/ErrosLogin/CustomError";
+import e from "express";
 
 
 export class PostgreAuthenticationRepostitory implements IAuthenticatedRepository {
 
-    async CreateToken(idUser: string, token: string): Promise<Token> {
+    async CreateToken(idUser: string): Promise<Token> {
 
         try {
 
 
             const user = await prismaClient.token.create({
                 data: {
-                    token,
                     cadastroId: idUser
-                }
+                },
 
-            })
+            }) as Token
             return user
         } catch (e) {
-            throw new CustomErrror("Ocorreu um erro ao logar, por favor, tente novamente mais tarde", 408)
 
+
+            throw new CustomErrror("Erro ao criar token, tente novamente mais tarde", 409)
         }
 
 
     }
+
+
     async IsAuthenticated(idUser: string): Promise<Token> {
 
         const user = await prismaClient.token.findUnique({
             where: {
-                id: idUser
+                cadastroId: idUser
+            },
+            select: {
+                token: true
             }
         }) as Token
 
@@ -48,4 +54,30 @@ export class PostgreAuthenticationRepostitory implements IAuthenticatedRepositor
 
     }
 
+    async UpdatedToken(idUser: string, token: string): Promise<Token> {
+
+        try {
+
+
+            const Token = await prismaClient.token.update({
+                where: {
+                    cadastroId: idUser
+                },
+                data: {
+                    token
+                }
+            })
+
+            return Token
+        
+
+
+          }  catch (error) {
+            if (error instanceof CustomErrror) {
+                throw new CustomErrror("Erro ao carrega o token, tente novamente mais tarde", 408)
+            } else  {
+                throw new Error ("Erro interno")
+            }
+        }
+    }
 }

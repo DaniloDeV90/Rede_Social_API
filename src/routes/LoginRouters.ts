@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { loginController } from "../useCases/Login/Main";
-import { logoutController } from "../useCases/Logout/Main";
+import { loginController } from "../useCases/Auth/Login/Main";
+import { logoutController } from "../useCases/Auth/Logout/Main";
 import { authenticated } from "../middlewares";
 
 

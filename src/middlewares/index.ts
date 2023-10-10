@@ -1,10 +1,12 @@
 
+import { PostgreAuthenticationRepostitory } from "../respositories/implementations/PostgreAuthenticationRepostitory";
+import { RedisRepository } from "../respositories/implementations/RedisRepository";
 import { Authenticated } from "./authenticationmiddleware";
 import { AuthenticationStrategy } from "./strategy";
+const redisRepository = new RedisRepository ()
 
+const authenticated = new Authenticated (new AuthenticationStrategy (redisRepository))
 
-const authenticated = new Authenticated (new AuthenticationStrategy ())
-console.log ("assd")
 
 
 export { authenticated}

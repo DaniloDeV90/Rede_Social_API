@@ -2,7 +2,7 @@ import { User } from "./User";
 
 export class Token {
 
-    public token: string;
+    public token: string  | null;
     public cadastroId?: string;
     public cadastro?: User;
     

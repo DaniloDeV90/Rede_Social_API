@@ -24,7 +24,7 @@ model Cadastro {
 
 model Token {
   id         String   @id @default(uuid())
-  token      String
+  token      String?
   cadastroId String   @unique
   cadastro   Cadastro @relation(fields: [cadastroId], references: [id], onDelete: Cascade)
 }

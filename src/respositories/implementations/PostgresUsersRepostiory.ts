@@ -69,4 +69,19 @@ export class PostgresUsersRepository implements IusersRespository {
         return UserUpdated
     }
 
+    async deleteUser(id: string): Promise<void> {
+
+        try {
+
+
+            await prismaClient.cadastro.delete({
+                where: {
+                    id
+                }
+            })
+
+        } catch (error) {
+            throw new CustomErrror("Erro ao tentar deletar usuario, tente novamente mais tarde", 408)
+        }
+    }
 }

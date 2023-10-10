@@ -51,7 +51,7 @@ class App {
   public routes(): void {
     this.app.use("/", HomeRouter)
     this.app.use("/cadastro", CadastroRouters)
-    this.app.use("/createprofile", PofileRouters)
+    this.app.use("/profile", PofileRouters)
     this.app.use("/login", loginRouters)
     this.app.use("/post", PostRouters)
     this.app.use("/comentarios", ComentarioRouters)

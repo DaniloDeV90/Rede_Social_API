@@ -15,4 +15,5 @@ export interface IusersRespository {
     SaveUser (User: User): Promise<User>
     findByUniqueUser (User: string): Promise <User>
     UpdateUser (id:string,  User:  Iupdate):Promise <User>
+    deleteUser (id:string): Promise <void>
 }

@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express"
 import { AuthenticationStrategy } from "./strategy"
+import CustomError from "../errors/ErrosLogin/CustomError"
 
 
 declare module "express" {
@@ -15,9 +16,26 @@ export class Authenticated {
 
     async isAuthenticated(req: Request, res: Response, next: NextFunction) {
 
-        const a = await this.authenticationStrategy.execute()
+        try {
 
-        console.log(a)
+
+            const token = await this.authenticationStrategy.execute(req.cookies.userProfile)
+
+
+
+            req.userId = token.id
+
+            next()
+
+        } catch (error) {
+            if (error instanceof CustomError) {
+                return res.status(error.codigo).json({ status: "error", message: error.mensagem });
+            }
+        }
+
+
+
+
 
 
     }
