@@ -17,7 +17,7 @@ export class LoginController {
             const token = await this.LoginUseCase.execute({ ...req.body })
 
 
-            res.cookie(`userProfile`, token)
+            res.cookie(`userProfile`, token, { httpOnly: true })
             res.status(200).json({ status: "success" })
 
 
