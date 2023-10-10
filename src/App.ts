@@ -4,18 +4,13 @@ import { resolve } from "path"
 import cors from "cors"
 import PofileRouters from "./routes/ProfileRouters"
 import CadastroRouters from "./routes/CadastroRouters"
-import {loginRouters} from "./routes/LoginRouters"
+import { loginRouters } from "./routes/LoginRouters"
 import HomeRouter from "./routes/HomeRouters"
 import PostRouters from "./routes/PostRouters"
 import ComentarioRouters from "./routes/ComentarioRouters"
 import ImageProfile from "./routes/ImageProfile"
-import CookiesRouters from "./routes/CookiesRouters"
 import cookiesParser from "cookie-parser"
 import http from "http"
-
-
-
-import IsAuthenticatedRouters from "./routes/AuthenticatedRouters"
 import configureSocket from "./WebSockets/CreatePostSocket"
 
 const corsConfig = {
@@ -33,7 +28,7 @@ class App {
 
     this.middlewares()
     this.routes()
-  
+
   }
 
   public middlewares(): void {
@@ -55,18 +50,17 @@ class App {
     this.app.use("/login", loginRouters)
     this.app.use("/post", PostRouters)
     this.app.use("/comentarios", ComentarioRouters)
-    this.app.use("/imagesprofile",ImageProfile )
-    this.app.use("/cookies", CookiesRouters)
-    this.app.use("/auth", IsAuthenticatedRouters)
-
-  }
+    this.app.use("/imagesprofile", ImageProfile)
 
 
   }
+
+
+}
 
 
 const serverHttp = http.createServer(new App().app)
-configureSocket (serverHttp)
+configureSocket(serverHttp)
 
 export { serverHttp }
 
