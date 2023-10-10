@@ -8,7 +8,7 @@ import {loginRouters} from "./routes/LoginRouters"
 import HomeRouter from "./routes/HomeRouters"
 import PostRouters from "./routes/PostRouters"
 import ComentarioRouters from "./routes/ComentarioRouters"
-import FotosRouters from "./routes/FotosRouters"
+import ImageProfile from "./routes/ImageProfile"
 import CookiesRouters from "./routes/CookiesRouters"
 import cookiesParser from "cookie-parser"
 import http from "http"
@@ -55,7 +55,7 @@ class App {
     this.app.use("/login", loginRouters)
     this.app.use("/post", PostRouters)
     this.app.use("/comentarios", ComentarioRouters)
-    this.app.use("/fotos", FotosRouters)
+    this.app.use("/imagesprofile",ImageProfile )
     this.app.use("/cookies", CookiesRouters)
     this.app.use("/auth", IsAuthenticatedRouters)
 
