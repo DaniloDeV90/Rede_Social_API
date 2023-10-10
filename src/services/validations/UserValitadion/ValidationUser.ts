@@ -1,8 +1,8 @@
 import moment from "moment"
 import validator from "validator"
-import { User } from "../../entities/User"
+import { User } from "../../../entities/User"
 import { IvalidationUser } from "./IvalidationUser"
-import CustomError from "../../errors/ErrosLogin/CustomError"
+import CustomError from "../../../errors/ErrosLogin/CustomError"
 
 
 

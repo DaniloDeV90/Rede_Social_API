@@ -1,3 +1,5 @@
+import { IaddImagemProfileDTO } from "../useCases/Profile/AddImageProfile/AddImagemProfileDTO";
+
 export interface IImageProfileRepository {
-    AddImagemProfile (idUser: string, urlImg: string): Promise <void>
+    AddImagemProfile (data: IaddImagemProfileDTO): Promise <void>
 }

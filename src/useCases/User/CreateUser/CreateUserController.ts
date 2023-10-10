@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import CustomError from "../../../errors/ErrosLogin/CustomError";
 import { CreateUserUseCase } from "./CreateUserUseCase";
-import { IvalidationUser } from "../../../services/validations/IvalidationUser";
+import { IvalidationUser } from "../../../services/validations/UserValitadion/IvalidationUser";
 
 
 export class CreateUserController {

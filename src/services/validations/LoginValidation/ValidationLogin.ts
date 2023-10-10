@@ -1,7 +1,7 @@
 
-import CustomErrror from "../../errors/ErrosLogin/CustomError"
+import CustomErrror from "../../../errors/ErrosLogin/CustomError"
 import { IvalidationLogin } from "./IvalidationLogin"
-import { Ilogin } from "../../entities/Login"
+import { Ilogin } from "../../../entities/Login"
 
 
 

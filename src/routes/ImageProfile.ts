@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { addImagemMulterController } from "../useCases/Profile/AddImagemProfile";
+
 import { authenticated } from "../middlewares";
+import { addImagemMulterController } from "../useCases/Profile/AddImageProfile";
 
 
 

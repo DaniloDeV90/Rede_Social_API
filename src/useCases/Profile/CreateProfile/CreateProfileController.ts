@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import CustomError from "../../../errors/ErrosLogin/CustomError";
 import { CreateProfileUseCase } from "./CreateProfileUseCase";
-import { IvalidationCreateProfile } from "../../../services/validations/IvalidationsCreateProfile";
+import { IvalidationCreateProfile } from "../../../services/validations/ProfileValidation/IvalidationsCreateProfile";
 
 export class CreateProfileController {
 

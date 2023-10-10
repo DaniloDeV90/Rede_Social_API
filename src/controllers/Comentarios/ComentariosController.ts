@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { prismaClient } from "../../databse"
-import CadastroUnique from "../../utils/functions/CadastroFunction"
+// import CadastroUnique from "../../utils/functions/CadastroFunction"
 
 class ComentariosController {
     async criarComentario(req: Request, res: Response) {

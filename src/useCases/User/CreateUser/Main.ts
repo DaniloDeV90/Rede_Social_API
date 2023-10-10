@@ -1,6 +1,6 @@
 import { PostgreAuthenticationRepostitory } from "../../../respositories/implementations/PostgreAuthenticationRepostitory";
 import { PostgresUsersRepository } from "../../../respositories/implementations/PostgresUsersRepostiory";
-import { ValidationUser } from "../../../services/validations/ValidationUser";
+import { ValidationUser } from "../../../services/validations/UserValitadion/ValidationUser";
 import { CreateUserController } from "./CreateUserController";
 import { CreateUserUseCase } from "./CreateUserUseCase";
 

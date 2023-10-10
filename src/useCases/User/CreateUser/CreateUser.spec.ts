@@ -1,7 +1,7 @@
 import { expect, it } from "vitest";
 import { User } from "../../../entities/User";
 import CustomErrror from "../../../errors/ErrosLogin/CustomError";
-import { ValidationUser } from "../../../services/validations/ValidationUser";
+import { ValidationUser } from "../../../services/validations/UserValitadion/ValidationUser";
 
 it("should throw error for invalid dates", () => {
     const uservalidate = new ValidationUser();

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { IvalidationLogin } from "../../../services/validations/IvalidationLogin";
+import { IvalidationLogin } from "../../../services/validations/LoginValidation/IvalidationLogin";
 import { LoginUseCase } from "./LoginUseCase";
 import CustomError from "../../../errors/ErrosLogin/CustomError";
 

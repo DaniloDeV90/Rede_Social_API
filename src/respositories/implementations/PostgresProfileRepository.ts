@@ -14,9 +14,16 @@ export class PostgresProfileRepository implements IprofileRepository {
                 data: {
                     sexo: data.sexo,
                     username: data.username,
-                    cadastro_Id: idCadastro
+                    cadastro_Id: idCadastro,
+                    ImgPerfil: {
+                        create: {
+                            imgUrl: "https://redesocbucket.s3.sa-east-1.amazonaws.com/semfoto.png"
+                        }
+                    }
 
-                }
+                },
+
+
 
             })
 

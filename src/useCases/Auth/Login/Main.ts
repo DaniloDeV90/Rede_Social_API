@@ -1,7 +1,7 @@
 import { PostgreAuthenticationRepostitory } from "../../../respositories/implementations/PostgreAuthenticationRepostitory";
 import { PostgresUsersRepository } from "../../../respositories/implementations/PostgresUsersRepostiory";
 import { RedisRepository } from "../../../respositories/implementations/RedisRepository";
-import { ValidationLogin } from "../../../services/validations/ValidationLogin";
+import { ValidationLogin } from "../../../services/validations/LoginValidation/ValidationLogin";
 import { LoginController } from "./LoginController";
 import { LoginUseCase } from "./LoginUseCase";
 

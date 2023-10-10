@@ -1,5 +1,5 @@
-import { Profile } from "../../entities/Profile";
-import CustomErrror from "../../errors/ErrosLogin/CustomError";
+import { Profile } from "../../../entities/Profile";
+import CustomErrror from "../../../errors/ErrosLogin/CustomError";
 import { IvalidationCreateProfile } from "./IvalidationsCreateProfile";
 
 export class ValidationCreateProfile implements IvalidationCreateProfile {
@@ -15,7 +15,6 @@ export class ValidationCreateProfile implements IvalidationCreateProfile {
  
         if (!(gender.includes(profile.sexo))) throw new CustomErrror("Gênero inválido!", 408)
 
-        console.log("Acaba aqui")
 
     }
 }
