@@ -41,6 +41,7 @@ model Profile {
 
 model ImgPerfil {
   id         String  @id @default(uuid())
+  nameImg    String?
   imgUrl     String?
   profile_id String  @unique
   profile    Profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)

@@ -10,8 +10,7 @@ declare module "express" {
 }
 export class Authenticated {
 
-    private authenticationStrategy: AuthenticationStrategy
-    constructor(authenticationStrategy: AuthenticationStrategy) { this.authenticationStrategy = authenticationStrategy }
+    constructor( private authenticationStrategy: AuthenticationStrategy)  {}
 
 
     async isAuthenticated(req: Request, res: Response, next: NextFunction) {

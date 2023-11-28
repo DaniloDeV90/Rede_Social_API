@@ -6,10 +6,12 @@ import { IvalidationCreateProfile } from "../../../services/validations/ProfileV
 export class CreateProfileController {
 
     constructor(private createProfileUseCase: CreateProfileUseCase, private CreateProfileValidation: IvalidationCreateProfile) { }
+
+    
     async handle(req: Request, res: Response) {
         try {
 
-            console.log(req.userId)
+       
 
 
             this.CreateProfileValidation.ProfileIsValid({ ...req.body })

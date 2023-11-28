@@ -5,13 +5,18 @@ import cors from "cors"
 import PofileRouters from "./routes/ProfileRouters"
 import CadastroRouters from "./routes/CadastroRouters"
 import { loginRouters } from "./routes/LoginRouters"
-import HomeRouter from "./routes/HomeRouters"
+
 import PostRouters from "./routes/PostRouters"
 import ComentarioRouters from "./routes/ComentarioRouters"
 import ImageProfile from "./routes/ImageProfile"
 import cookiesParser from "cookie-parser"
 import http from "http"
-import configureSocket from "./WebSockets/CreatePostSocket"
+import { Socket } from "./ServerSocket"
+import { AuthenticationStrategy } from "./middlewares/strategy"
+import { RedisRepository } from "./respositories/implementations/RedisRepository"
+import { SocketAuthentication } from "./utils/functions/SocketAuthentication"
+
+
 
 const corsConfig = {
 
@@ -44,13 +49,14 @@ class App {
   }
 
   public routes(): void {
-    this.app.use("/", HomeRouter)
     this.app.use("/cadastro", CadastroRouters)
     this.app.use("/profile", PofileRouters)
     this.app.use("/login", loginRouters)
     this.app.use("/post", PostRouters)
     this.app.use("/comentarios", ComentarioRouters)
     this.app.use("/imagesprofile", ImageProfile)
+    
+
 
 
   }
@@ -60,7 +66,11 @@ class App {
 
 
 const serverHttp = http.createServer(new App().app)
-configureSocket(serverHttp)
+const redisRepository = new RedisRepository ()
+const authenticationStrategy = new AuthenticationStrategy (redisRepository)
+const socketAuhtentication =  new SocketAuthentication (authenticationStrategy)
+new Socket(serverHttp, socketAuhtentication)
+
 
 export { serverHttp }
 

@@ -19,7 +19,8 @@ export class PostgresUsersRepository implements IusersRespository {
                 nome: User.nome,
                 email: User.email
             }
-        })
+
+        }) as User
 
         return user
     }
@@ -30,6 +31,13 @@ export class PostgresUsersRepository implements IusersRespository {
         const emaill = await prismaClient.cadastro.findUnique({
             where: {
                 email
+            },
+            include: {
+                profile: {
+                    select: {
+                        id: true
+                    }
+                }
             }
         }) as User
 
@@ -39,13 +47,13 @@ export class PostgresUsersRepository implements IusersRespository {
 
     }
 
-    async findByUniqueUser(data: string): Promise<User> {
+    async findByUniqueUser(id: string): Promise<User> {
 
 
         const login = await prismaClient.cadastro.findUnique({
 
             where: {
-                id: data
+                id: id
             }
         }) as User
 
@@ -63,7 +71,7 @@ export class PostgresUsersRepository implements IusersRespository {
             },
             data: { ...user }
 
-        })
+        }) as User
 
         await prismaClient.$disconnect()
         return UserUpdated

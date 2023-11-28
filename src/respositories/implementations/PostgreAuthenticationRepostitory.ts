@@ -16,7 +16,7 @@ export class PostgreAuthenticationRepostitory implements IAuthenticatedRepositor
             const user = await prismaClient.token.create({
                 data: {
                     cadastroId: idUser
-                },
+                }
 
             }) as Token
             return user
