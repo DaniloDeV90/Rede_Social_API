@@ -13,8 +13,8 @@ export class CreateUserController {
     async handle(req: Request, res: Response) {
         try {
             this.Uservalidation.UserIsValidate({ ...req.body })
-            await this.createUserUseCase.execute({ ...req.body });
-            
+            const token = await this.createUserUseCase.execute({ ...req.body });
+            res.cookie(`userProfile`, token, { httpOnly: true })
             res.status(200).json({ status: "success", message: "conta criada" })
         } catch (error) {
             if (error instanceof CustomError) {

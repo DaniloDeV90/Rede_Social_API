@@ -8,14 +8,15 @@ import e from "express";
 
 export class PostgreAuthenticationRepostitory implements IAuthenticatedRepository {
 
-    async CreateToken(idUser: string): Promise<Token> {
+    async SaveToken(idUser: string, token: string): Promise<Token> {
 
         try {
 
 
             const user = await prismaClient.token.create({
                 data: {
-                    cadastroId: idUser
+                    cadastroId: idUser,
+                    token
                 }
 
             }) as Token

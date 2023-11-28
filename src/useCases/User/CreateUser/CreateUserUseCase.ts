@@ -22,10 +22,11 @@ export class CreateUserUseCase {
         const user = new User(data)
         const newUser = await this.UserResporitory.SaveUser(user)
         
+        const token = CreateToken(newUser.id as string)
+        return await this.AuthenticatedRepository.SaveToken(newUser.id as string, token)
         
-        await this.AuthenticatedRepository.CreateToken(newUser.id as string)
-        
-     
+
+
 
     }
 
