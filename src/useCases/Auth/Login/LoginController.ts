@@ -12,10 +12,11 @@ export class LoginController {
 
     async handle(req: Request, res: Response) {
         try {
-
+            console.log(req.body )
             this.ValidationLogin.LoginIsValid({ ...req.body })
             const token = await this.LoginUseCase.execute({ ...req.body })
             res.cookie(`userProfile`, token, { httpOnly: true })
+            console.log("logado!!")
             res.status(200).json({ status: "success" })
 
 

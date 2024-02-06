@@ -10,6 +10,6 @@ export class ValidationLogin implements IvalidationLogin {
     LoginIsValid(data: Ilogin): void {
 
         if (!(data.password &&
-            data.email)) throw new CustomErrror("Campos vazios!", 408)
+            data.email)) throw new CustomErrror("Campos vazios!", 400)
     }
 }

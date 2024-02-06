@@ -17,18 +17,19 @@ export class LoginUseCase {
 
     async execute(data: IloginDTO) {
 
-        const Login = await this.UserRepository.findByEmail(data.email)
-        if (!Login) throw new CustomErrror("Senha ou Email incorretos", 408)
-        if (!await BcryptCompare(data.password, Login.password)) throw new CustomErrror("Senha ou Email incorretos", 408)
+        const User = await this.UserRepository.findByEmail(data.email)
+
+        if (!User) throw new CustomErrror("Senha ou Email incorretos", 401)
+        if (!await BcryptCompare(data.password, User.password)) throw new CustomErrror("Senha ou Email incorretos", 401)
 
 
-        const token = CreateToken(Login.id as string)
-        const NewTokenGenerate = await this.TokenRepository.UpdatedToken(Login.id as string, token)
-
-        await this.redisRepository.set(`user-${Login.id as string}`, token)
+        const token = CreateToken(User.id as string)
 
 
-        return NewTokenGenerate.token
+        await this.redisRepository.set(`user-${User.id as string}`, token)
+    
+
+        return token
 
 
 

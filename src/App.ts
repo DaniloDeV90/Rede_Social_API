@@ -4,8 +4,10 @@ import { resolve } from "path"
 import cors from "cors"
 import PofileRouters from "./routes/ProfileRouters"
 import CadastroRouters from "./routes/CadastroRouters"
-import { loginRouters } from "./routes/LoginRouters"
 
+import AuthRouters from "./routes/AuthRouters"
+import AmizadeRouters from "./routes/AmizadeRouters"
+import { loginRouters } from "./routes/LoginRouters"
 import PostRouters from "./routes/PostRouters"
 import ComentarioRouters from "./routes/ComentarioRouters"
 import ImageProfile from "./routes/ImageProfile"
@@ -55,8 +57,8 @@ class App {
     this.app.use("/post", PostRouters)
     this.app.use("/comentarios", ComentarioRouters)
     this.app.use("/imagesprofile", ImageProfile)
-    
-
+    this.app.use ("/friend", AmizadeRouters)
+    this.app.use("/auth", AuthRouters)
 
 
   }
@@ -66,9 +68,9 @@ class App {
 
 
 const serverHttp = http.createServer(new App().app)
-const redisRepository = new RedisRepository ()
-const authenticationStrategy = new AuthenticationStrategy (redisRepository)
-const socketAuhtentication =  new SocketAuthentication (authenticationStrategy)
+const redisRepository = new RedisRepository()
+const authenticationStrategy = new AuthenticationStrategy(redisRepository)
+const socketAuhtentication = new SocketAuthentication(authenticationStrategy)
 new Socket(serverHttp, socketAuhtentication)
 
 

@@ -5,7 +5,7 @@ import { AddImagemProfileUseCase } from "./AddImagemProfileUseCase";
 import CustomError from "../../../errors/ErrosLogin/CustomError";
 
 
-
+import { multerCloudinary } from "../../../utils/config/MulterConfig";
 
 export class AddImagemProfileController {
     constructor(private ImagesUpload: ImulterUploadImages, private AddImageProfileUseCase: AddImagemProfileUseCase) { }
@@ -15,12 +15,15 @@ export class AddImagemProfileController {
     handle(req: Request, res: Response) {
 
 
-        return this.ImagesUpload.upload().single("imageProfile")(req, res, async (err) => {
+        return  multerCloudinary.single("imageProfile")(req, res, async (err) => {
 
             try {
                 const file = req.file as Express.Multer.File
+                console.log(file)
                 await this.AddImageProfileUseCase.execute(req.userId as string, file as Express.Multer.File, err)
-                res.status(201).json({ status: "success", message: "Imagem de perfil alterada!" })
+
+
+                return res.status(201).json({ status: "success", message: "Imagem de perfil alterada!" })
 
             } catch (error) {
                 if (error instanceof CustomError) {

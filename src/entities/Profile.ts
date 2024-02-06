@@ -2,6 +2,10 @@ export class Profile {
     public id?: string;
     public username: string;
     public sexo: string;
+    public ImgPerfil?: {
+
+        imgUrl: string
+    }
 
 
     constructor(props: Profile) {

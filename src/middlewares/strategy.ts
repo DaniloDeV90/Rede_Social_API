@@ -13,8 +13,6 @@ export class AuthenticationStrategy {
 
         const token = JwtVerifyToken(tokenIsValid)
 
-
-
         const tokenValid = await this.RedisRepository.get(`user-${token.id}`)
 
         if (tokenIsValid != tokenValid) throw new CustomError("Essa sessão ja foi encerrada!", 401)

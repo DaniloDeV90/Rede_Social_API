@@ -8,22 +8,20 @@ declare module "express" {
         userId?: string
     }
 }
+
+
 export class Authenticated {
 
-    constructor( private authenticationStrategy: AuthenticationStrategy)  {}
+    constructor(private authenticationStrategy: AuthenticationStrategy) { }
 
 
     async isAuthenticated(req: Request, res: Response, next: NextFunction) {
 
         try {
-
-
+        
             const token = await this.authenticationStrategy.execute(req.cookies.userProfile)
 
-
-
             req.userId = token.id
-
             next()
 
         } catch (error) {

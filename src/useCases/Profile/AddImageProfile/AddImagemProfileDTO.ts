@@ -1,6 +1,6 @@
 export interface IimageProfileDTO {
     userId: string,
-    nameImagem: string,
-
+    urlImg: string
+   nomeImg:string
 
 }

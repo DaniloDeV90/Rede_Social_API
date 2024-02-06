@@ -16,7 +16,7 @@ export class RedisRepository implements IRedisRepository {
     }
     async set(key: string, value: string): Promise<void> {
 
-        await redisClient.set(key, value)
+        await redisClient.set(key, value,  'EX', 86400)
 
     }
     async deleteKeysBD(): Promise<void> {

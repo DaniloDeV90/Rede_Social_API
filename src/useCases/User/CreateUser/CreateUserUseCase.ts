@@ -6,13 +6,16 @@ import { User } from "../../../entities/User";
 import CustomErrror from "../../../errors/ErrosLogin/CustomError";
 import { IAuthenticatedRepository } from "../../../respositories/IAuthenticatedRepository";
 import CreateToken from "../../../utils/functions/CreateToken";
+import { IRedisRepository } from "../../../respositories/IRedisRepository";
+
 
 
 export class CreateUserUseCase {
 
 
     constructor(private UserResporitory: IusersRespository,
-        private AuthenticatedRepository: IAuthenticatedRepository) { }
+        private AuthenticatedRepository: IAuthenticatedRepository, 
+        private RedisRepsitory: IRedisRepository) { }
 
 
     async execute(data: IcreateUserRequestDTO) {
@@ -21,9 +24,11 @@ export class CreateUserUseCase {
         if (verifyEmail) throw new CustomErrror("Este Email já existe", 408)
         const user = new User(data)
         const newUser = await this.UserResporitory.SaveUser(user)
-        
+        console.log (newUser.nome)
         const token = CreateToken(newUser.id as string)
-        return await this.AuthenticatedRepository.SaveToken(newUser.id as string, token)
+
+        await this.RedisRepsitory.set(`user-${newUser.id as string}`, token)
+        return  token
         
 
 

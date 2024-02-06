@@ -9,7 +9,7 @@ export class ValidationCreateProfile implements IvalidationCreateProfile {
 
         if (!(profile.sexo && profile.username)) throw new CustomErrror("Campos vazios!", 408)
 
-        if (profile.username.length < 5 || profile.username.length > 40) throw new CustomErrror("Username deve ter  no máximo 40 caracteres e no mínimo 5", 408)
+        if (profile.username.length < 5 || profile.username.length > 20) throw new CustomErrror("Username deve ter  no máximo 20 caracteres e no mínimo 5", 408)
 
 
  

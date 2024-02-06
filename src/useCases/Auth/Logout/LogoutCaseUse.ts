@@ -1,13 +1,13 @@
-import { IAuthenticatedRepository } from "../../../respositories/IAuthenticatedRepository";
+
+import { IRedisRepository } from "../../../respositories/IRedisRepository";
 
 import { ILogoutDTO } from "./LogoutDTO";
 
 export class LogoutUseCase {
 
-    constructor(private AuthenticationRepository: IAuthenticatedRepository) { }
+    constructor(private redisRepository: IRedisRepository) { }
 
     async execute(IdUser: ILogoutDTO) {
-
-        this.AuthenticationRepository.delete(IdUser)
+        await this.redisRepository.del(`user-${IdUser as string}`)
     }
 }

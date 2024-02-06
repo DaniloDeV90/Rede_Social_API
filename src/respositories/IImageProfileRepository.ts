@@ -1,7 +1,7 @@
 import { IimageProfileDTO } from "../useCases/Profile/AddImageProfile/AddImagemProfileDTO";
 import { IImageDeleteDTO } from "../useCases/Profile/DeleteImageProfile/DeleteImageProfileDTO";
 
-export interface IdeleteImage {
+export interface IimagePorfile {
     ImgPerfil: {
         id: string;
         nameImg: string | null;
@@ -14,5 +14,5 @@ export interface IdeleteImage {
 export interface IImageProfileRepository {
     AddImageProfile (data: IimageProfileDTO): Promise <void>
     DeleteImagePorfile (data: IImageDeleteDTO ): Promise <void>
-    findProfileImage (idUser: string) : Promise <IdeleteImage>
+    findProfileImage (idUser: string) : Promise <IimagePorfile>
 }

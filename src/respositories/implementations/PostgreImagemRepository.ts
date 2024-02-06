@@ -3,7 +3,7 @@ import CustomErrror from "../../errors/ErrosLogin/CustomError";
 
 import { IimageProfileDTO } from "../../useCases/Profile/AddImageProfile/AddImagemProfileDTO";
 import { IImageDeleteDTO } from "../../useCases/Profile/DeleteImageProfile/DeleteImageProfileDTO";
-import { IImageProfileRepository, IdeleteImage } from "../IImageProfileRepository";
+import { IImageProfileRepository, IimagePorfile } from "../IImageProfileRepository";
 
 export class PostgresImageProfileRepository implements IImageProfileRepository {
     async AddImageProfile(data: IimageProfileDTO): Promise<void> {
@@ -17,10 +17,11 @@ export class PostgresImageProfileRepository implements IImageProfileRepository {
                     cadastro_Id: data.userId
                 },
                 data: {
+                    
                     ImgPerfil: {
                         update: {
-                            imgUrl: "https://redesocbucket.s3.sa-east-1.amazonaws.com/" + data.nameImagem,
-                            nameImg: data.nameImagem
+                            imgUrl:   data.urlImg,
+                            nameImg: data.nomeImg
 
                         }
 
@@ -61,7 +62,7 @@ export class PostgresImageProfileRepository implements IImageProfileRepository {
 
 
 
-    async findProfileImage(idUser: string): Promise<IdeleteImage> {
+    async findProfileImage(idUser: string): Promise<IimagePorfile> {
         try {
 
 
@@ -72,7 +73,7 @@ export class PostgresImageProfileRepository implements IImageProfileRepository {
                 select: {
                     ImgPerfil: true
                 }
-            }) as IdeleteImage
+            }).catch (err => console.log  (err)) as IimagePorfile
 
             return profileImage
 

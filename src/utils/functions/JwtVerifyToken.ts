@@ -14,6 +14,7 @@ export default (token: string) => {
 
 
     } catch (e) {
+        console.log (e)
         throw new CustomError("Token inválido!", 401)
     }
 

@@ -30,6 +30,7 @@ export class MulterUpload implements ImulterUploadImages {
 
 
     fileFilter(req: Request, file: Express.Multer.File, callback: multer.FileFilterCallback) {
+
         if (file.mimetype == "image/png" || file.mimetype == "image/jpeg") {
             return callback(null, true)
         }

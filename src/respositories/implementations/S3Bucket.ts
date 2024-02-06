@@ -31,14 +31,17 @@ export class S3BucketRepository implements IS3Bucket {
     }
 
     async S3delete(options: IdeleteImageBucket): Promise<boolean> {
+        console.log ("dd")
         try {
 
+    
             const command = new DeleteObjectCommand(options)
-            await s3client.send(command)
+            await s3client.send(command).catch (err => console.log ("erro ai paizao")) 
 
             return true
 
         } catch (erro) {
+            console.log ("asdasddsa")
             throw new CustomErrror("Erro ao  apagar imagem", 408)
         }
     }

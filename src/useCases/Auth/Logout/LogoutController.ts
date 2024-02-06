@@ -11,7 +11,7 @@ export class LogoutController {
         try {
 
 
-            // this.LogoutUseCase.execute(req.userId as string)
+           await this.LogoutUseCase.execute(req.userId as string)
             res.status(201).json({ success: "success", message: "chegou" })
 
         } catch (error) {

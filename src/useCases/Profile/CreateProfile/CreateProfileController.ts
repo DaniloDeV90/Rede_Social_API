@@ -12,8 +12,8 @@ export class CreateProfileController {
         try {
 
        
-
-
+      
+console.log (req.body, "ddd")
             this.CreateProfileValidation.ProfileIsValid({ ...req.body })
 
             await this.createProfileUseCase.execute(req.userId as string, { ...req.body })

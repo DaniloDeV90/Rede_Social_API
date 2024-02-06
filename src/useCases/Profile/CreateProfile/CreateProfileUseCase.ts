@@ -9,7 +9,7 @@ export class CreateProfileUseCase {
     ) { }
 
     async execute(UserId: string, data: IprofileDTO) {
-
+     
         await this.ProfileRepository.createProfile(UserId, data)
 
 

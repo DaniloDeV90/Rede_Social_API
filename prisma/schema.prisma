@@ -31,12 +31,15 @@ model Token {
 
 model Profile {
   id          String     @id @default(uuid())
-  username    String
+  username    String     @unique
   sexo        String
   cadastro_Id String     @unique
   cadastro    Cadastro   @relation(fields: [cadastro_Id], references: [id], onDelete: Cascade)
   ImgPerfil   ImgPerfil?
   post        Post[]
+
+  receivedRequests FriendRequest[] @relation("ReceivedRequests")
+  sentRequests     FriendRequest[] @relation("SentRequests")
 }
 
 model ImgPerfil {
@@ -45,6 +48,23 @@ model ImgPerfil {
   imgUrl     String?
   profile_id String  @unique
   profile    Profile @relation(fields: [profile_id], references: [id], onDelete: Cascade)
+}
+
+model FriendRequest {
+  id               String @id @default(uuid())
+  profileSendId    String 
+  profileReceiveId String 
+
+  status         statusPedido
+  profileReceive Profile      @relation(fields: [profileReceiveId], references: [id], name: "ReceivedRequests")
+  profileSend    Profile      @relation(fields: [profileSendId], references: [id], name: "SentRequests")
+  @@unique([profileReceiveId, profileSendId])
+}
+
+enum statusPedido {
+  ACEITO
+  NEGADO
+  ESPERA
 }
 
 model Post {
